@@ -1,0 +1,64 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: bspai
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  ml:
+    build:
+      context: .
+      dockerfile: ml/Dockerfile
+    environment:
+      MODEL_PATH: models/xgb_pairwise_v1.pkl
+      ML_PORT: 8001
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./models:/app/models:ro
+
+  rag:
+    build:
+      context: .
+      dockerfile: rag/Dockerfile
+    environment:
+      RAG_PORT: 8002
+      LLM_PROVIDER: mock
+      LLM_MODEL: mock-llm
+      EMBEDDING_PROVIDER: hashing
+    ports:
+      - "8002:8002"
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      DATABASE_URL: postgresql+asyncpg://postgres:postgres@postgres:5432/bspai
+      ML_SERVICE_URL: http://ml:8001
+      RAG_SERVICE_URL: http://rag:8002
+      ENABLE_MOCK_ML: "false"
+      ENABLE_MOCK_RAG: "true"
+      PORT: 8000
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      ml:
+        condition: service_started
+      rag:
+        condition: service_started
+
+volumes:
+  pgdata:
