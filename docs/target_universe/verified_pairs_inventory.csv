@@ -1,0 +1,14 @@
+target1,target2,stage_raw,stage_rank,evidence,evidence_url,evidence_level
+CD19,CD3E,Approved,0,"blinatumomab (Blincyto) 2014, R/R B-ALL",https://www.fda.gov/drugs/spotlight-cder-science/bispecific-antibodies-area-research-and-clinical-applications,approved-fda
+EGFR,MET,Approved,0,"amivantamab (Rybrevant) 2021, NSCLC EGFR-exon20",https://www.fda.gov/drugs/spotlight-cder-science/bispecific-antibodies-area-research-and-clinical-applications,approved-fda
+TNFRSF17,CD3E,Approved,0,teclistamab 2022; elranatamab 2023; linvoseltamab 2025 (RRMM),https://pmc.ncbi.nlm.nih.gov/articles/PMC10618718,approved-fda
+MS4A1,CD3E,Approved,0,mosunetuzumab 2022; epcoritamab 2023; glofitamab 2023 (B-NHL),https://www.fda.gov/drugs/spotlight-cder-science/bispecific-antibodies-area-research-and-clinical-applications,approved-fda
+GPRC5D,CD3E,Approved,0,talquetamab (Talvey) 2023 (RRMM),https://pmc.ncbi.nlm.nih.gov/articles/PMC10618718,approved-fda
+DLL3,CD3E,Approved,0,tarlatamab (Imdelltra) 2024 (SCLC),https://www.evitria.com/journal/bispecific-antibodies/fda-approved-bispecific-antibodies,approved-fda
+ERBB2,ERBB2,Approved,0,"zanidatamab (Ziihera) 2024 biparatopic HER2xHER2 - SELF-PAIR, unsuitable for pairwise-diff training",https://www.evitria.com/journal/bispecific-antibodies/fda-approved-bispecific-antibodies,approved-fda-self-pair
+ERBB2,ERBB3,Approved,0,zenocutuzumab (Bizengri) 2024 (NRG1+ NSCLC/pancreatic),https://www.evitria.com/journal/bispecific-antibodies/fda-approved-bispecific-antibodies,approved-fda
+PMEL,CD3E,Approved,0,"tebentafusp (Kimmtrak) 2022 uveal melanoma - TCR-format, not antibody BsAb",https://www.fda.gov/drugs/spotlight-cder-science/bispecific-antibodies-area-research-and-clinical-applications,approved-fda-tcr-format
+VEGFA,ANGPT2,Approved,0,faricimab (Vabysmo) 2022 ophthalmology - NON-ONCOLOGY indication,https://www.fda.gov/drugs/spotlight-cder-science/bispecific-antibodies-area-research-and-clinical-applications,approved-fda-non-oncology
+PDCD1,CTLA4,Approved (China NMPA),0,cadonilimab 2022 (China); AK104 approved cervical per Zhang et al. 2024,https://doi.org/10.1007/s00432-024-05740-3,approved-nmpa-china
+PDCD1,VEGFA,Approved (China NMPA),0,ivonescimab 2024 (China) - requires independent verification,https://doi.org/10.1007/s00432-024-05740-3,approved-nmpa-china-unverified
+CD274,CTLA4,Phase 3,1,KN046 Phase 3 PDAC/NSCLC per Zhang et al. 2024 - requires independent verification,https://doi.org/10.1007/s00432-024-05740-3,paper-stated-unverified

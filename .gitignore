@@ -1,0 +1,47 @@
+# Model artifacts (large binaries) — do not commit unless explicitly requested
+models/*.pkl
+models/*.json
+models/*.bin
+*.pkl
+
+# Data archives and generated artifacts (scoped: keep manifests/scripts/docs tracked)
+data/raw/
+data/processed/
+data/embeddings/
+*.h5ad
+*.h5
+*.rds
+*.rds.gz
+*.tar
+*.csv.gz
+*.txt.gz
+
+# Model binaries (keep manifests + docs tracked)
+models/*.pkl
+models/*.json
+models/*.bin
+*.pkl
+*.bin
+
+# Env / secrets (keep .env.example tracked)
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+secrets/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Docker
+.dockerignore
