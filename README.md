@@ -45,9 +45,8 @@ BiSpecPairwise AI is an end-to-end computational and artificial intelligence pla
 | **Day 1** | **2026-10-06 11:57** | **Core ML Pipeline & Feature Engineering** | `ml/` (training, prediction, evaluation, explainability), `notebooks/` (01–06), biological feature modules (correlation, double positive, pathway, target activity, schema). |
 | **Day 2** | **2026-10-08 22:37** | **Backend API & Microservices Infrastructure** | `backend/` (FastAPI 5 routes, 6 SQLAlchemy models, DB migrations, persistence, ML/RAG clients), Docker compose & multi-service setup. |
 | **Day 3** | **2026-10-09 11:10** | **RAG Clinical Evidence Service & Safety Scoring** | `rag/` (loader, chunking, embeddings, vector store, retriever, LLM client, report generator, app), biological `safety.py` module, and first live scRNA-seq run. |
-| **Day 4 (Part 1)** | **2026-10-11 15:57** | **Gene2Vec & Clinical Target Universe Curation** | `docs/target_universe/` (30-row verified clinical target inventory across AML, CRC, HNSCC, PDAC), `gene_embedding.py` (Gene2Vec 200d), and repository configs. |
-| **Day 4 (Part 2)** | **2026-10-11 21:52** | **10x MTX Streaming Adapter & Checkpoints** | `mtx10x.py` (memory-controlled 10x MTX parser), atomic checkpoints, `run_10x_dataset.py`, `docs/dataset_inventory.md`, and test suite. |
-| **Day 4 (Part 3)** | **2026-10-11 22:37** | **11-Feature Manifest & Offline Store Builder** | `docs/feature_manifest.md` (11-feature mathematical contract per Zhang et al. 2024), `build_feature_store.py` (offline grouped feature extractor). |
+| **Day 4** | **2026-10-11 15:57** | **Gene2Vec & Clinical Target Universe Curation** | `docs/target_universe/` (30-row verified clinical target inventory across AML, CRC, HNSCC, PDAC), `gene_embedding.py` (Gene2Vec 200d), and repository configs. |
+| **Day 4 (Phase 2)** | **2026-10-11 21:52** | **10x MTX Streaming Adapter & Checkpoints** | `mtx10x.py` (memory-controlled 10x MTX parser), atomic checkpoints, `run_10x_dataset.py`, `docs/dataset_inventory.md`, and test suite. |
 
 ---
 

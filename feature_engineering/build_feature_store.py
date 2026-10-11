@@ -1,4 +1,4 @@
-"""Offline feature-store builder (Day 4).
+"""Offline feature-store builder (Phase 4).
 
 Reads one processed tumor AnnData + a pairs CSV (target1,target2 columns),
 computes the 11 BSPAI features per pair with grouped top-2 cell populations,
