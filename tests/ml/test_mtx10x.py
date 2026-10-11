@@ -119,9 +119,9 @@ def test_to_anndata_emits_float32_sparse(tmp_path):
     import scipy.sparse
 
     m = scipy.sparse.csr_matrix(np.array([[0, 1], [2, 0], [0, 3]], dtype=np.int64))
-    a = mtx10x.to_anndata([m], ["S"], ["G1", "G2"])
+    a = mtx10x.to_anndata([m], ["S"], ["G1", "G2", "G3"])
     assert str(a.X.dtype) == "float32"
-    assert a.shape == (2, 2)
+    assert a.shape == (2, 3)
     assert list(a.obs["sample"]) == ["S", "S"]
 
 
