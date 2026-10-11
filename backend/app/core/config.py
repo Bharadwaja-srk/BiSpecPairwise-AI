@@ -60,6 +60,12 @@ class Settings(BaseSettings):
         description="Secret key for JWT/signing (must be changed in production)",
     )
     ACCESS_TOKEN_EXPIRE_MINUTES: int = Field(default=30, description="Access token expiry")
+    BSPAI_API_KEYS: str = Field(
+        default="",
+        description="Comma-separated API keys for X-API-Key auth. Empty = open "
+                    "development mode (all /api except /api/health still rate-limited; "
+                    "do NOT use empty in production).",
+    )
 
     # CORS
     CORS_ORIGINS: List[str] = Field(

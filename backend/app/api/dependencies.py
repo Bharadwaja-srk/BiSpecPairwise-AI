@@ -7,7 +7,7 @@ Provides dependencies for database, ML service, RAG service, and common paramete
 from typing import Annotated, Optional
 from uuid import UUID
 
-from fastapi import Depends, Header, HTTPException, Query, status
+from fastapi import Depends, Header, HTTPException, Query, Request, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import Settings, get_settings
@@ -79,15 +79,14 @@ class TargetPairParams:
 TargetPairQueryDep = Annotated[TargetPairParams, Depends()]
 
 
-# Optional authentication (for future use)
-async def get_current_user_id(
-    authorization: Annotated[Optional[str], Header()] = None,
-) -> Optional[str]:
-    """Extract user ID from authorization header (placeholder for future auth)."""
-    if not authorization:
-        return None
-    # TODO: Implement JWT validation
-    return "anonymous"
+# Authentication: real shared-secret boundary (see core/security.py ApiKeyMiddleware).
+# This dependency exposes the verified key fingerprint (or open-dev-mode) to
+# handlers. It never fabricates identity: without a configured key list the
+# middleware logs open mode and this returns "open-dev-mode".
+async def get_current_user_id(request: Request) -> Optional[str]:
+    """Return the verified API-key fingerprint, or open-dev-mode."""
+    fp = getattr(getattr(request, "state", None), "api_key_fingerprint", None)
+    return f"apikey:{fp}" if fp else "open-dev-mode"
 
 
 CurrentUserDep = Annotated[Optional[str], Depends(get_current_user_id)]

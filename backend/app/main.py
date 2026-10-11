@@ -41,8 +41,16 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     await init_db()
     logger.info("Database initialized")
 
-    # TODO: Initialize ML service client
-    # TODO: Initialize RAG service client
+    # Warm up downstream service clients (non-fatal: services may start later)
+    try:
+        from app.services.ml_service import get_ml_service
+        from app.services.rag_service import get_rag_service
+
+        ml, rag = get_ml_service(), get_rag_service()
+        logger.info(f"ML client ready (mock={type(ml).__name__}), "
+                    f"RAG client ready (mock={type(rag).__name__})")
+    except Exception as e:
+        logger.warning(f"Downstream client warmup deferred: {e}")
 
     logger.info("Application startup complete")
     yield
