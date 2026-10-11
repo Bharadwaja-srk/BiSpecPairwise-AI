@@ -47,7 +47,14 @@ NSCLC/PDAC/HCC rows would be a methodological extension requiring approval.
 - Leakage: pair-grouped splits; reference vector recomputed per fold;
   no test labels in tuning; per-fold results + variability, never aggregate-only.
 
-## 5. Verdict: NOT ready for fitting
+## 5. Adopted policy: INDICATION-MATCHED ONLY (decision 2026-10-11)
+
+Every clinical training row sources biological features from its corresponding
+tumor type. No pooled features, no cross-tumor substitution without a separately
+approved methodological extension. Rows with unavailable indication-matched
+features are INCOMPLETE (see `docs/feature_availability_matrix.csv`: 16 rows,
+best case 8/11 — the 2 HNSCC rows — remainder lower; safety missing everywhere,
+pathways zero-by-policy). Verdict reaffirmed: NOT READY FOR FITTING.
 
 Blockers in order: (1) processed matrices for NSCLC/PDAC/HCC (+HNSCC
 leiden mapping) — Docker-gated; (2) feature-sourcing policy decision above;
