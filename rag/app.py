@@ -31,7 +31,16 @@ class RetrieveRequest(BaseModel):
 
 @app.get("/health")
 def health() -> dict:
-    return {"status": "ok", "documents": _count()}
+    return {"status": "ok", "documents": _count(), "fingerprints": _fingerprints()}
+
+
+def _fingerprints() -> list[str]:
+    try:
+        from rag.retrieval.retriever import get_store
+
+        return get_store().fingerprints()
+    except Exception:
+        return []
 
 
 def _count() -> int:
@@ -61,10 +70,21 @@ def ingest(payload: dict) -> dict:
     chunk_size = int(payload.get("chunk_size", 800))
     chunks = chunk_documents(docs, chunk_size=chunk_size)
     embedder = get_embedder()
+    fingerprint = embedder.config_fingerprint()
+    store = get_store()
+    if not store.fingerprint_ok(fingerprint):
+        raise HTTPException(
+            409, f"embedding config changed (active={fingerprint}, "
+                 f"stored={store.fingerprints()}). Clear and re-ingest; "
+                 "vectors across configs are not comparable.")
     for c in chunks:
         c["vector"] = embedder.embed(c.get("text", ""))
-    ids = get_store().add_documents(chunks)
-    return {"chunks": len(ids), "documents": len(docs)}
+        c["embedding_config"] = fingerprint
+        c["embedding_provenance"] = embedder.provenance()
+    ids = store.add_documents(chunks)
+    return {"chunks": len(ids), "documents": len(docs),
+            "embedding_config": fingerprint,
+            "embedding_provenance": embedder.provenance()}
 
 
 @app.post("/generate-report")

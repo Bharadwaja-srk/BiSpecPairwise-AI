@@ -56,6 +56,8 @@ class OpenAICompatibleClient(LLMClient):
     def generate(self, prompt: str) -> dict[str, Any]:
         import httpx
 
+        if not (prompt or "").strip():
+            raise LLMError("empty prompt: nothing to interpret", "empty_response")
         try:
             r = httpx.post(
                 self._url,
@@ -63,6 +65,8 @@ class OpenAICompatibleClient(LLMClient):
                 json={"model": self.model, "messages": [{"role": "user", "content": prompt}], "temperature": 0.2},
                 timeout=self._timeout,
             )
+        except httpx.TimeoutException as e:
+            raise LLMError(f"LLM request timed out after {self._timeout}s ({self.provider})", "timeout") from e
         except Exception as e:
             raise LLMError(f"LLM provider unreachable ({self.provider}): {type(e).__name__}", "provider_unavailable") from e
         if r.status_code == 401:

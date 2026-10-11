@@ -66,6 +66,20 @@ class VectorStore:
     def count(self) -> int:
         return len(self._docs)
 
+    def fingerprints(self) -> list[str]:
+        """Distinct embedding-config fingerprints present in the store.
+
+        More than one fingerprint (or a fingerprint that differs from the
+        active embedder's) means the index mixes embedding spaces: clear and
+        re-ingest. Never compare vectors across fingerprints.
+        """
+        return sorted({str(d.get("embedding_config", "unknown"))
+                       for d in self._docs.values()})
+
+    def fingerprint_ok(self, fingerprint: str) -> bool:
+        present = self.fingerprints()
+        return not present or present == [fingerprint]
+
     def clear(self) -> None:
         self._docs.clear()
         self._save()
