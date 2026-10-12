@@ -1,5 +1,18 @@
 # Docker + Data Runbook for Tomorrow (PREPARED, NOT EXECUTED — needs approval)
 
+## PCA diagnostic evidence (2026-10-11, bounded phase, no full run)
+
+- Controlled input: 5,000 cells from valid `smoke1.stage_hvg.h5ad`, fresh
+  `diag_pca_*` outputs, `-m 4g`. Exit 0, wall 1.2 min. PCA 15s @ 0.63 GB RSS;
+  cluster 38s @ 0.68 GB. `X_pca` + leiden verified in both checkpoints.
+- Full 89k-cell smoke path reached PASS independently (all stage files valid,
+  26 clusters, all six markers). PCA code path is CORRECT; earlier death was
+  transient cap exceedance (4.15 GB peak inside 4g), not logic.
+- Scale densifies float32->float64 (scanpy expected behavior, not a bug).
+- Cap policy: 10g for 308k-cell full runs (~8-10 GB projected transient);
+  4g proven sufficient through HVG on 89k cells. Keep atomic writes, stage
+  checkpoints, RSS logging; pause OneDrive sync during multi-GB writes.
+
 ## 0. Preconditions (run first, stop if any fail)
 
 ```powershell
