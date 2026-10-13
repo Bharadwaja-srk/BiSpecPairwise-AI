@@ -50,6 +50,9 @@ def main() -> int:
                     help="glob of existing batch h5ad files; skips TAR loading")
     ap.add_argument("--resume-raw", default=None,
                     help="existing raw concat h5ad; skips TAR loading and concat")
+    ap.add_argument("--resume-stage", default=None,
+                    help="existing stage checkpoint h5ad; starts the staged pipeline "
+                         "from it (completed steps skip via uns markers)")
     ap.add_argument("--recast-batches", default=None,
                     help="glob of int64 batch h5ad files; rewrites each as float32 "
                          "<name>.f32.h5ad and exits (no pipeline run)")
@@ -60,7 +63,8 @@ def main() -> int:
 
     import os as _os
 
-    for _p in (args.out_raw, args.out, args.qc):
+    guard_paths = (args.out, args.qc) if args.resume_stage else (args.out_raw, args.out, args.qc)
+    for _p in guard_paths:
         if _os.path.exists(_p) and _os.path.getsize(_p) > 0 and not args.overwrite:
             print(f"REFUSE: output exists (use --overwrite to replace): {_p}", flush=True)
             return 2
@@ -103,6 +107,8 @@ def main() -> int:
             log(f"resuming from {len(batch_files)} batch files", fh)
         elif args.resume_raw:
             log(f"resuming from raw checkpoint {args.resume_raw} (TAR load skipped)", fh)
+        elif args.resume_stage:
+            log(f"resuming from stage checkpoint {args.resume_stage} (TAR load skipped)", fh)
         else:
             names = [s for s, _ in complete]
             if args.max_samples is not None:
@@ -135,7 +141,11 @@ def main() -> int:
             log(f"loaded {len(names)} requested; batches={len(batch_files)}", fh)
 
         parts = [ad.read_h5ad(bf) for bf in batch_files]
-        if parts:
+        if args.resume_stage:
+            raw = ad.read_h5ad(args.resume_stage)
+            raw_shape = [int(raw.n_obs), int(raw.n_vars)]
+            log(f"resumed stage: {args.resume_stage} {raw_shape[0]} cells x {raw_shape[1]} genes", fh)
+        elif parts:
             raw = ad.concat(parts, join="outer", label="sample", index_unique="-")
             del parts
             raw_shape = [int(raw.n_obs), int(raw.n_vars)]
