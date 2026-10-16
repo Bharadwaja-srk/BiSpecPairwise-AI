@@ -35,9 +35,17 @@ services:
       RAG_PORT: 8002
       LLM_PROVIDER: mock
       LLM_MODEL: mock-llm
-      EMBEDDING_PROVIDER: hashing
+      EMBEDDING_PROVIDER: sentence-transformers
+      EMBEDDING_MODEL: NeuML/pubmedbert-base-embeddings
+      EMBEDDING_REVISION: b79526d6ef3645e0df4530322e266f24c829f5ef
+      EMBEDDING_DIM: 768
+      HF_HOME: /app/hf_cache
+      VECTOR_STORE_PATH: /app/rag_store/vector_store.json
     ports:
       - "8002:8002"
+    volumes:
+      - ./data/hf_cache:/app/hf_cache
+      - ./data/rag_store:/app/rag_store
 
   backend:
     build:

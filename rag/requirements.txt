@@ -8,5 +8,6 @@ pytest>=7.0
 pytest-asyncio>=0.23
 # Optional providers (uncomment as needed):
 # openai>=1.0
-# Production biomedical embeddings (pulls torch; install in RAG container):
-# sentence-transformers>=2.0
+# Production biomedical embeddings (RAG container only; cp311 manylinux wheels):
+torch==2.4.1
+sentence-transformers==3.1.1

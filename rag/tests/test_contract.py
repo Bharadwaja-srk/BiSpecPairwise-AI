@@ -29,6 +29,13 @@ def test_backend_payload_keys_match_rag_schema():
 def test_backend_mock_report_passes_rag_validator():
     import asyncio
 
+    import pytest
+
+    # Cross-service contract: needs the backend tree, which the RAG
+    # production image intentionally excludes. Runs on host/CI where both
+    # packages are present; skips (never fails) inside service containers.
+    pytest.importorskip("app.services.rag_service",
+                        reason="backend package not in RAG image (by design)")
     from app.services.rag_service import MockRAGService
     from rag.reports.report_generator import validate_report
 

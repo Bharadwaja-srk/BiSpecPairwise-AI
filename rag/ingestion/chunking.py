@@ -28,7 +28,10 @@ def chunk_document(doc: dict[str, Any], chunk_size: int = 800, overlap: int = 10
                 "title": doc.get("title", "untitled"),
                 "source": doc.get("source", "unknown"),
                 "url": doc.get("url"),
-                "metadata": {**(doc.get("metadata", {}) or {}), "chunk_index": idx},
+                "source_id": doc.get("source_id"),
+                "metadata": {**(doc.get("metadata", {}) or {}),
+                             "source_id": doc.get("source_id"),
+                             "chunk_index": idx},
             }
         )
     return out

@@ -8,6 +8,8 @@ models/*.bin
 data/raw/
 data/processed/
 data/embeddings/
+data/hf_cache/
+data/rag_store/
 *.h5ad
 *.h5
 *.rds
