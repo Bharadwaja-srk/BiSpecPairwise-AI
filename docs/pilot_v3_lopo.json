@@ -1,0 +1,142 @@
+{
+  "eligible_rows": 18,
+  "representative_rows": 14,
+  "attached_rows": 12,
+  "incomplete_rows": [
+    {
+      "pair": "ERBB2__ERBB3",
+      "scope": "in-scope:pancreatic",
+      "reason": "no indication-matched store"
+    },
+    {
+      "pair": "CD274__CTLA4",
+      "scope": "in-scope:pancreatic",
+      "reason": "no indication-matched store"
+    }
+  ],
+  "valid_comparisons": 20,
+  "lopo": {
+    "folds": [
+      {
+        "held_out_pair": "CD274__CTLA4",
+        "n_train_rows": 10,
+        "n_heldout_comparisons": 4,
+        "n_train_pairs": 31,
+        "status": "scored",
+        "models": {
+          "pairwise_xgb": 0.75,
+          "pointwise_xgb": 1.0,
+          "dummy_constant": 0.5
+        }
+      },
+      {
+        "held_out_pair": "CD274__TNFRSF9",
+        "n_train_rows": 11,
+        "n_heldout_comparisons": 4,
+        "n_train_pairs": 38,
+        "status": "scored",
+        "models": {
+          "pairwise_xgb": 1.0,
+          "pointwise_xgb": 1.0,
+          "dummy_constant": 0.5
+        }
+      },
+      {
+        "held_out_pair": "CTLA4__PDCD1",
+        "n_train_rows": 9,
+        "n_heldout_comparisons": 6,
+        "n_train_pairs": 24,
+        "status": "scored",
+        "models": {
+          "pairwise_xgb": 0.6666666666666666,
+          "pointwise_xgb": 0.6666666666666666,
+          "dummy_constant": 0.5
+        }
+      },
+      {
+        "held_out_pair": "EGFR__LGR5",
+        "n_train_rows": 11,
+        "n_heldout_comparisons": 0,
+        "status": "NOT ESTIMABLE (no held-out cross-rank comparisons)",
+        "models": {}
+      },
+      {
+        "held_out_pair": "EGFR__MET",
+        "n_train_rows": 11,
+        "n_heldout_comparisons": 6,
+        "n_train_pairs": 34,
+        "status": "scored",
+        "models": {
+          "pairwise_xgb": 1.0,
+          "pointwise_xgb": 1.0,
+          "dummy_constant": 0.5
+        }
+      },
+      {
+        "held_out_pair": "ERBB2__ERBB3",
+        "n_train_rows": 11,
+        "n_heldout_comparisons": 6,
+        "n_train_pairs": 34,
+        "status": "scored",
+        "models": {
+          "pairwise_xgb": 1.0,
+          "pointwise_xgb": 0.6666666666666666,
+          "dummy_constant": 0.5
+        }
+      },
+      {
+        "held_out_pair": "LAG3__PDCD1",
+        "n_train_rows": 11,
+        "n_heldout_comparisons": 6,
+        "n_train_pairs": 36,
+        "status": "scored",
+        "models": {
+          "pairwise_xgb": 0.6666666666666666,
+          "pointwise_xgb": 0.6666666666666666,
+          "dummy_constant": 0.5
+        }
+      },
+      {
+        "held_out_pair": "PDCD1__TIGIT",
+        "n_train_rows": 11,
+        "n_heldout_comparisons": 4,
+        "n_train_pairs": 38,
+        "status": "scored",
+        "models": {
+          "pairwise_xgb": 0.75,
+          "pointwise_xgb": 0.75,
+          "dummy_constant": 0.5
+        }
+      },
+      {
+        "held_out_pair": "PDCD1__VEGFA",
+        "n_train_rows": 11,
+        "n_heldout_comparisons": 4,
+        "n_train_pairs": 38,
+        "status": "scored",
+        "models": {
+          "pairwise_xgb": 0.75,
+          "pointwise_xgb": 0.75,
+          "dummy_constant": 0.5
+        }
+      }
+    ],
+    "summary": {
+      "pairwise_xgb": {
+        "mean_concordance": 0.8229166666666666,
+        "n_scored_folds": 8
+      },
+      "pointwise_xgb": {
+        "mean_concordance": 0.8125,
+        "n_scored_folds": 8
+      },
+      "dummy_constant": {
+        "mean_concordance": 0.5,
+        "n_scored_folds": 8
+      },
+      "n_heldout_comparisons_total": 40
+    },
+    "design": "LOPO over canonical pairs (all indications held out together); concordance over same-space cross-rank held-out comparisons; ties score 0.5; denominator = n_heldout_comparisons_total"
+  },
+  "verdict": "exploratory pilot (see fold table; no generalization claim)"
+}
