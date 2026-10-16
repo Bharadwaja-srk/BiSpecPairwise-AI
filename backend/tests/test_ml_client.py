@@ -67,3 +67,57 @@ async def test_real_client_sends_features_and_parses_dict_importance():
         assert r.prediction_score == pytest.approx(0.81)
         assert r.sorted_importance()[0]["feature"] == "safety_score"
         await ml.close()
+
+
+@pytest.mark.asyncio()
+async def test_real_predict_rejects_nan_features_without_network():
+    """Non-finite features -> structured 503 before any HTTP call (no zero-fill, no mock)."""
+    from app.services.ml_service import FEATURE_ORDER, MLService, MLServiceError
+
+    ml = MLService("http://ml:8001", timeout=5.0)
+    try:
+        with pytest.raises(MLServiceError) as exc:
+            await ml.predict("CD274", "CTLA4", {k: float("nan") for k in FEATURE_ORDER})
+        assert exc.value.status_code == 503
+        assert "feature" in str(exc.value).lower()
+    finally:
+        await ml.close()
+
+
+@pytest.mark.asyncio()
+async def test_real_predict_rejects_inf_and_missing_keys():
+    from app.services.ml_service import FEATURE_ORDER, MLService, MLServiceError
+
+    ml = MLService("http://ml:8001", timeout=5.0)
+    try:
+        inf_feats = {k: 0.5 for k in FEATURE_ORDER}
+        inf_feats["safety_score"] = float("inf")
+        with pytest.raises(MLServiceError) as exc:
+            await ml.predict("CD274", "CTLA4", inf_feats)
+        assert exc.value.status_code == 503
+        partial = {k: 0.5 for k in FEATURE_ORDER[:5]}  # missing keys
+        with pytest.raises(MLServiceError) as exc2:
+            await ml.predict("CD274", "CTLA4", partial)
+        assert exc2.value.status_code == 503
+    finally:
+        await ml.close()
+
+
+@pytest.mark.asyncio()
+async def test_real_rank_rejects_nan_candidate_without_network():
+    import respx
+
+    from app.services.ml_service import FEATURE_ORDER, MLService, MLServiceError
+
+    ml = MLService("http://ml:8001", timeout=5.0)
+    cands = [
+        {"target1": "CD274", "target2": "CTLA4", "features": {k: 0.5 for k in FEATURE_ORDER}},
+        {"target1": "EGFR", "target2": "ERBB2", "features": {k: float("nan") for k in FEATURE_ORDER}},
+    ]
+    with respx.mock(base_url="http://ml:8001", assert_all_called=False) as mock:
+        route = mock.post("/rank").mock(side_effect=AssertionError("must not call ML with NaN"))
+        with pytest.raises(MLServiceError) as exc:
+            await ml.rank_candidates(cands, top_k=2)
+        assert exc.value.status_code == 503
+        assert not route.called
+    await ml.close()

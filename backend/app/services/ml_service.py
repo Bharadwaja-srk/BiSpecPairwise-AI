@@ -81,6 +81,24 @@ class MLServiceError(Exception):
         self.status_code = status_code
 
 
+def _require_finite_features(features: dict, op: str) -> None:
+    """Reject missing/non-finite feature data before any ML HTTP call.
+
+    Never zero-fills, fabricates, or falls back to mock predictions: callers
+    get a structured 503 so ranking/analysis visibly waits for valid data.
+    """
+    import math
+
+    bad = [k for k in FEATURE_ORDER if not isinstance(features.get(k), (int, float)) or not math.isfinite(features[k])]
+    if bad:
+        raise MLServiceError(
+            f"Valid feature data unavailable ({op}): non-finite or missing values for "
+            f"{bad}. Ranking/analysis cannot proceed until finite 11-feature data are "
+            f"available (feature store or caller-supplied finite features).",
+            503,
+        )
+
+
 class MLService:
     """HTTP client for the existing ML service."""
 
@@ -122,6 +140,7 @@ class MLService:
         features: dict[str, float],
     ) -> MLPredictionResponse:
         """POST /predict — features must contain the 11 FEATURE_ORDER keys."""
+        _require_finite_features(features, "predict")
         client = await self._get_client()
         try:
             response = await client.post(
@@ -141,6 +160,8 @@ class MLService:
         top_k: Optional[int] = None,
     ) -> MLRankResponse:
         """POST /rank — each candidate: {target1, target2, features}."""
+        for c in candidates:
+            _require_finite_features(c.get("features", {}), f"rank {c.get('target1')}-{c.get('target2')}")
         client = await self._get_client()
         payload: dict[str, Any] = {"candidates": candidates}
         if top_k is not None:

@@ -112,8 +112,10 @@ def create_app() -> FastAPI:
         # Check database connectivity
         db_healthy = False
         try:
+            from sqlalchemy import text
+
             async with db_manager.session() as session:
-                await session.execute("SELECT 1")
+                await session.execute(text("SELECT 1"))
             db_healthy = True
         except Exception as e:
             logger.warning(f"Database health check failed: {e}")
