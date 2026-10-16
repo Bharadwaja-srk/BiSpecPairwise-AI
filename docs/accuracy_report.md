@@ -1,5 +1,11 @@
 # Model Accuracy Report (2026-10-11 — NO Docker, NO real-model fitting)
 
+> HISTORICAL (partially superseded 2026-10-17): "real accuracy not estimable"
+> below held for v2 labels. Current exploratory pilot (`docs/pilot_v3_lopo.json`,
+> v3 labels + HNSCC/HCC/NSCLC stores): pairwise-XGB 0.823, pointwise-XGB 0.813,
+> dummy 0.500 over 40 same-space held-out comparisons (9 folds, 8 scored).
+> Exploratory only — no generalization claim; PDAC rows still incomplete.
+
 ## What was actually tested
 
 1. **Evaluation protocol on synthetic fixtures** (seed 7, 16 rows / 8 pairs /

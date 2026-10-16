@@ -1,5 +1,11 @@
 # Pilot Readiness Package (review only — NO fitting performed)
 
+> HISTORICAL (superseded 2026-10-17): 16-row/v2-label verdict below. Current:
+> v3 labels (18 eligible / 9 pairs / 104 combos), 3-tumor stores (HNSCC 10/11,
+> HCC 11/11, NSCLC 11/11), exploratory LOPO in `docs/pilot_v3_lopo.json`
+> (pairwise-XGB 0.823, pointwise-XGB 0.813, dummy 0.500 over 40 held-out
+> comparisons). PDAC-only rows remain incomplete (no pancreatic store).
+
 Date: 2026-10-11. Dataset: `docs/target_universe/clinical_four_indication_draft_v2.csv`
 (28 rows; labels approved with 3-cell fix). No model fitted, no features generated
 beyond previously reported HNSCC validation probes.

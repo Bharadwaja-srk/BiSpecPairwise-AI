@@ -1,0 +1,160 @@
+[
+ {
+  "query": "CD274 CTLA4 bispecific antibody HCC hepatocellular carcinoma trial",
+  "expected": [
+   "PMID:39920148",
+   "NCT05984277"
+  ],
+  "hits": [
+   [
+    "doi:10.1007/s00432-024-05740-3",
+    0.4609
+   ],
+   [
+    "NCT05149326",
+    0.3651
+   ],
+   [
+    "NCT05984277",
+    0.3517
+   ],
+   [
+    "NCI-zenocutuzumab-2025",
+    0.3069
+   ],
+   [
+    "NCT06129864",
+    0.2644
+   ]
+  ],
+  "recall_at_5": 0.5,
+  "top1_hit": false,
+  "judgment": "pending-manual"
+ },
+ {
+  "query": "EGFR MET bispecific antibody NSCLC approval",
+  "expected": [
+   "FDA-spotlight-bsAb",
+   "NCI-zenocutuzumab-2025"
+  ],
+  "hits": [
+   [
+    "doi:10.1007/s00432-024-05740-3",
+    0.5517
+   ],
+   [
+    "NCT05984277",
+    0.4815
+   ],
+   [
+    "NCI-zenocutuzumab-2025",
+    0.446
+   ],
+   [
+    "NCT05149326",
+    0.4291
+   ],
+   [
+    "AZ-PR-evolve-lung02-2026",
+    0.3362
+   ]
+  ],
+  "recall_at_5": 0.5,
+  "top1_hit": false,
+  "judgment": "pending-manual"
+ },
+ {
+  "query": "volrustomig HNSCC head and neck trial status",
+  "expected": [
+   "NCT06129864"
+  ],
+  "hits": [
+   [
+    "NCT06129864",
+    0.507
+   ],
+   [
+    "NCT05984277",
+    0.4605
+   ],
+   [
+    "NCI-zenocutuzumab-2025",
+    0.4312
+   ],
+   [
+    "doi:10.1007/s00432-024-05740-3",
+    0.4156
+   ],
+   [
+    "NCT05149326",
+    0.4007
+   ]
+  ],
+  "recall_at_5": 1.0,
+  "top1_hit": true,
+  "judgment": "pending-manual"
+ },
+ {
+  "query": "bispecific antibody NSCLC trial discontinued futility",
+  "expected": [
+   "AZ-PR-evolve-lung02-2026",
+   "Merck-INTRPID-037-2021"
+  ],
+  "hits": [
+   [
+    "doi:10.1007/s00432-024-05740-3",
+    0.5337
+   ],
+   [
+    "NCT05984277",
+    0.499
+   ],
+   [
+    "NCT05149326",
+    0.4634
+   ],
+   [
+    "NCI-zenocutuzumab-2025",
+    0.4537
+   ],
+   [
+    "AZ-PR-evolve-lung02-2026",
+    0.3612
+   ]
+  ],
+  "recall_at_5": 0.5,
+  "top1_hit": false,
+  "judgment": "pending-manual"
+ },
+ {
+  "query": "KN046 pancreatic cancer phase 3",
+  "expected": [
+   "NCT05149326"
+  ],
+  "hits": [
+   [
+    "NCT05149326",
+    0.5513
+   ],
+   [
+    "NCT05984277",
+    0.4623
+   ],
+   [
+    "doi:10.1007/s00432-024-05740-3",
+    0.4534
+   ],
+   [
+    "NCI-zenocutuzumab-2025",
+    0.441
+   ],
+   [
+    "AZ-PR-evolve-lung02-2026",
+    0.3373
+   ]
+  ],
+  "recall_at_5": 1.0,
+  "top1_hit": true,
+  "judgment": "pending-manual"
+ }
+]

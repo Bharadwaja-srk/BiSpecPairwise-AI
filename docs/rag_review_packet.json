@@ -1,0 +1,289 @@
+{
+ "instructions": "For each query, mark every hit relevant/not-relevant by hand against the information need. Do NOT use model scores as judgments. Un-ingested expected sources cannot be retrieved by design \u2014 record them as missing-corpus, not ranking failures.",
+ "queries": [
+  {
+   "query": "CD274 CTLA4 bispecific antibody HCC hepatocellular carcinoma trial",
+   "expected_sources": [
+    "PMID:39920148",
+    "NCT05984277"
+   ],
+   "expected_not_ingested": [
+    "PMID:39920148"
+   ],
+   "hits": [
+    {
+     "source_id": "doi:10.1007/s00432-024-05740-3",
+     "score": 0.4609,
+     "title": "BiSpec Pairwise AI (Zhang et al. 2024)",
+     "url": "https://doi.org/10.1007/s00432-024-05740-3",
+     "passage": "BiSpec Pairwise AI (Zhang et al., J Cancer Res Clin Oncol 2024, DOI 10.1007/s00432-024-05740-3): machine-learning framework guiding bispecific antibody target-pair selection. XGBoost pairwise learning over biological features (target activity, safety, cell-type specificity, pathway mechanism, gene embeddings) predicts druggability of target combinations; RAG with GPT supplements predictions with feature rationales. Approved bispecific examples: glofitamab CD20xCD3, AK104 PD-1xCTLA4 (cadonilimab), AK112 PD-1xVEGF (ivonescimab), amivantamab EGFRxMET approved 2021 for NSCLC.",
+     "expected_for_this_query": false,
+     "human_relevant": "PENDING (mark true/false by hand)"
+    },
+    {
+     "source_id": "NCT05149326",
+     "score": 0.3651,
+     "title": "ENREACH-PDAC-01 KN046 PDAC Phase 3",
+     "url": "https://clinicaltrials.gov/study/NCT05149326",
+     "passage": "ENREACH-PDAC-01 (NCT05149326, Alphamab KN046-303): randomized double-blind Phase 3, ~408 patients, KN046 (PD-L1xCTLA4 bispecific) + gemcitabine/nab-paclitaxel vs placebo + chemotherapy, 1L advanced PDAC. Primary endpoint overall survival; secondary PFS and ORR. Status UNKNOWN at last registry update (2024-03).",
+     "expected_for_this_query": false,
+     "human_relevant": "PENDING (mark true/false by hand)"
+    },
+    {
+     "source_id": "NCT05984277",
+     "score": 0.3517,
+     "title": "eVOLVE-Lung02 volrustomig NSCLC (discontinued 2026-08 futility)",
+     "url": "https://clinicaltrials.gov/study/NCT05984277",
+     "passage": "eVOLVE-Lung02 (NCT05984277, AstraZeneca D798AC00001): Phase 3, 895 patients, volrustomig (MEDI5752, PD-1xCTLA4 bispecific) + chemotherapy vs pembrolizumab + chemotherapy, 1L metastatic NSCLC PD-L1 <50%. Dual primary endpoints PFS and OS in PD-L1-negative participants. Status ACTIVE_NOT_RECRUITING at registry fetch; sponsor discontinued 2026-08-17 for futility (IDMC: PFS/OS unlikely met). Drug overall still investigational in other indications.",
+     "expected_for_this_query": true,
+     "human_relevant": "PENDING (mark true/false by hand)"
+    },
+    {
+     "source_id": "NCI-zenocutuzumab-2025",
+     "score": 0.3069,
+     "title": "NCI: Zenocutuzumab for NRG1+ NSCLC/PDAC (accelerated approval)",
+     "url": "https://www.cancer.gov/news-events/cancer-currents-blog/2025/fda-zenocutuzumab-lung-and-pancreatic-cancers-nrg1-alteration",
+     "passage": "NCI Cancer Currents Blog, 26 Mar 2025: FDA accelerated approval of zenocutuzumab (Bizengri) for NRG1-fusion NSCLC and pancreatic cancer. Zenocutuzumab blocks HER3-NRG1, disrupting HER2/HER3 signaling. Phase 2: 158 patients (93 NSCLC, 36 pancreatic); ~30% NSCLC response (median 12.7 mo), 42% pancreatic (median 7.4 mo). Mild toxicities (diarrhea, fatigue, nausea, anemia). Confirmatory studies required under accelerated approval.",
+     "expected_for_this_query": false,
+     "human_relevant": "PENDING (mark true/false by hand)"
+    },
+    {
+     "source_id": "NCT06129864",
+     "score": 0.2644,
+     "title": "eVOLVE-HNSCC volrustomig LA-HNSCC Phase 3",
+     "url": "https://clinicaltrials.ucsf.edu/trial/NCT06129864",
+     "passage": "eVOLVE-HNSCC (NCT06129864, AstraZeneca): Phase 3, ~1145 patients, volrustomig (MEDI5752) as sequential therapy vs observation in unresected locally advanced HNSCC after definitive concurrent chemoradiotherapy without progression. Status RECRUITING. Primary endpoint PFS in PD-L1 expressing tumors (BICR RECIST 1.1).",
+     "expected_for_this_query": false,
+     "human_relevant": "PENDING (mark true/false by hand)"
+    }
+   ],
+   "human_metrics": "PENDING (compute Recall@k/MRR only after manual judgments)"
+  },
+  {
+   "query": "EGFR MET bispecific antibody NSCLC approval",
+   "expected_sources": [
+    "FDA-spotlight-bsAb",
+    "NCI-zenocutuzumab-2025"
+   ],
+   "expected_not_ingested": [
+    "FDA-spotlight-bsAb"
+   ],
+   "hits": [
+    {
+     "source_id": "doi:10.1007/s00432-024-05740-3",
+     "score": 0.5517,
+     "title": "BiSpec Pairwise AI (Zhang et al. 2024)",
+     "url": "https://doi.org/10.1007/s00432-024-05740-3",
+     "passage": "BiSpec Pairwise AI (Zhang et al., J Cancer Res Clin Oncol 2024, DOI 10.1007/s00432-024-05740-3): machine-learning framework guiding bispecific antibody target-pair selection. XGBoost pairwise learning over biological features (target activity, safety, cell-type specificity, pathway mechanism, gene embeddings) predicts druggability of target combinations; RAG with GPT supplements predictions with feature rationales. Approved bispecific examples: glofitamab CD20xCD3, AK104 PD-1xCTLA4 (cadonilimab), AK112 PD-1xVEGF (ivonescimab), amivantamab EGFRxMET approved 2021 for NSCLC.",
+     "expected_for_this_query": false,
+     "human_relevant": "PENDING (mark true/false by hand)"
+    },
+    {
+     "source_id": "NCT05984277",
+     "score": 0.4815,
+     "title": "eVOLVE-Lung02 volrustomig NSCLC (discontinued 2026-08 futility)",
+     "url": "https://clinicaltrials.gov/study/NCT05984277",
+     "passage": "eVOLVE-Lung02 (NCT05984277, AstraZeneca D798AC00001): Phase 3, 895 patients, volrustomig (MEDI5752, PD-1xCTLA4 bispecific) + chemotherapy vs pembrolizumab + chemotherapy, 1L metastatic NSCLC PD-L1 <50%. Dual primary endpoints PFS and OS in PD-L1-negative participants. Status ACTIVE_NOT_RECRUITING at registry fetch; sponsor discontinued 2026-08-17 for futility (IDMC: PFS/OS unlikely met). Drug overall still investigational in other indications.",
+     "expected_for_this_query": false,
+     "human_relevant": "PENDING (mark true/false by hand)"
+    },
+    {
+     "source_id": "NCI-zenocutuzumab-2025",
+     "score": 0.446,
+     "title": "NCI: Zenocutuzumab for NRG1+ NSCLC/PDAC (accelerated approval)",
+     "url": "https://www.cancer.gov/news-events/cancer-currents-blog/2025/fda-zenocutuzumab-lung-and-pancreatic-cancers-nrg1-alteration",
+     "passage": "NCI Cancer Currents Blog, 26 Mar 2025: FDA accelerated approval of zenocutuzumab (Bizengri) for NRG1-fusion NSCLC and pancreatic cancer. Zenocutuzumab blocks HER3-NRG1, disrupting HER2/HER3 signaling. Phase 2: 158 patients (93 NSCLC, 36 pancreatic); ~30% NSCLC response (median 12.7 mo), 42% pancreatic (median 7.4 mo). Mild toxicities (diarrhea, fatigue, nausea, anemia). Confirmatory studies required under accelerated approval.",
+     "expected_for_this_query": true,
+     "human_relevant": "PENDING (mark true/false by hand)"
+    },
+    {
+     "source_id": "NCT05149326",
+     "score": 0.4291,
+     "title": "ENREACH-PDAC-01 KN046 PDAC Phase 3",
+     "url": "https://clinicaltrials.gov/study/NCT05149326",
+     "passage": "ENREACH-PDAC-01 (NCT05149326, Alphamab KN046-303): randomized double-blind Phase 3, ~408 patients, KN046 (PD-L1xCTLA4 bispecific) + gemcitabine/nab-paclitaxel vs placebo + chemotherapy, 1L advanced PDAC. Primary endpoint overall survival; secondary PFS and ORR. Status UNKNOWN at last registry update (2024-03).",
+     "expected_for_this_query": false,
+     "human_relevant": "PENDING (mark true/false by hand)"
+    },
+    {
+     "source_id": "AZ-PR-evolve-lung02-2026",
+     "score": 0.3362,
+     "title": "AstraZeneca: eVOLVE-Lung02 discontinuation (IDMC futility)",
+     "url": "https://www.astrazeneca.com/media-centre/press-releases/2026/update-on-evolve-lung02-phase-iii-trial.html",
+     "passage": "AstraZeneca press release 2026-08-17: eVOLVE-Lung02 Phase 3 discontinued on Independent Data Monitoring Committee recommendation; volrustomig + chemotherapy unlikely to meet dual primary endpoints PFS or OS in PD-L1-negative metastatic NSCLC vs pembrolizumab + chemotherapy. Safety consistent with known profiles, no new signals. Other volrustomig Phase 3 programs continue (cervical, HNSCC, mesothelioma). Trial: 895 patients, 25 countries, 1:1 randomization.",
+     "expected_for_this_query": false,
+     "human_relevant": "PENDING (mark true/false by hand)"
+    }
+   ],
+   "human_metrics": "PENDING (compute Recall@k/MRR only after manual judgments)"
+  },
+  {
+   "query": "volrustomig HNSCC head and neck trial status",
+   "expected_sources": [
+    "NCT06129864"
+   ],
+   "expected_not_ingested": [],
+   "hits": [
+    {
+     "source_id": "NCT06129864",
+     "score": 0.507,
+     "title": "eVOLVE-HNSCC volrustomig LA-HNSCC Phase 3",
+     "url": "https://clinicaltrials.ucsf.edu/trial/NCT06129864",
+     "passage": "eVOLVE-HNSCC (NCT06129864, AstraZeneca): Phase 3, ~1145 patients, volrustomig (MEDI5752) as sequential therapy vs observation in unresected locally advanced HNSCC after definitive concurrent chemoradiotherapy without progression. Status RECRUITING. Primary endpoint PFS in PD-L1 expressing tumors (BICR RECIST 1.1).",
+     "expected_for_this_query": true,
+     "human_relevant": "PENDING (mark true/false by hand)"
+    },
+    {
+     "source_id": "NCT05984277",
+     "score": 0.4605,
+     "title": "eVOLVE-Lung02 volrustomig NSCLC (discontinued 2026-08 futility)",
+     "url": "https://clinicaltrials.gov/study/NCT05984277",
+     "passage": "eVOLVE-Lung02 (NCT05984277, AstraZeneca D798AC00001): Phase 3, 895 patients, volrustomig (MEDI5752, PD-1xCTLA4 bispecific) + chemotherapy vs pembrolizumab + chemotherapy, 1L metastatic NSCLC PD-L1 <50%. Dual primary endpoints PFS and OS in PD-L1-negative participants. Status ACTIVE_NOT_RECRUITING at registry fetch; sponsor discontinued 2026-08-17 for futility (IDMC: PFS/OS unlikely met). Drug overall still investigational in other indications.",
+     "expected_for_this_query": false,
+     "human_relevant": "PENDING (mark true/false by hand)"
+    },
+    {
+     "source_id": "NCI-zenocutuzumab-2025",
+     "score": 0.4312,
+     "title": "NCI: Zenocutuzumab for NRG1+ NSCLC/PDAC (accelerated approval)",
+     "url": "https://www.cancer.gov/news-events/cancer-currents-blog/2025/fda-zenocutuzumab-lung-and-pancreatic-cancers-nrg1-alteration",
+     "passage": "NCI Cancer Currents Blog, 26 Mar 2025: FDA accelerated approval of zenocutuzumab (Bizengri) for NRG1-fusion NSCLC and pancreatic cancer. Zenocutuzumab blocks HER3-NRG1, disrupting HER2/HER3 signaling. Phase 2: 158 patients (93 NSCLC, 36 pancreatic); ~30% NSCLC response (median 12.7 mo), 42% pancreatic (median 7.4 mo). Mild toxicities (diarrhea, fatigue, nausea, anemia). Confirmatory studies required under accelerated approval.",
+     "expected_for_this_query": false,
+     "human_relevant": "PENDING (mark true/false by hand)"
+    },
+    {
+     "source_id": "doi:10.1007/s00432-024-05740-3",
+     "score": 0.4156,
+     "title": "BiSpec Pairwise AI (Zhang et al. 2024)",
+     "url": "https://doi.org/10.1007/s00432-024-05740-3",
+     "passage": "BiSpec Pairwise AI (Zhang et al., J Cancer Res Clin Oncol 2024, DOI 10.1007/s00432-024-05740-3): machine-learning framework guiding bispecific antibody target-pair selection. XGBoost pairwise learning over biological features (target activity, safety, cell-type specificity, pathway mechanism, gene embeddings) predicts druggability of target combinations; RAG with GPT supplements predictions with feature rationales. Approved bispecific examples: glofitamab CD20xCD3, AK104 PD-1xCTLA4 (cadonilimab), AK112 PD-1xVEGF (ivonescimab), amivantamab EGFRxMET approved 2021 for NSCLC.",
+     "expected_for_this_query": false,
+     "human_relevant": "PENDING (mark true/false by hand)"
+    },
+    {
+     "source_id": "NCT05149326",
+     "score": 0.4007,
+     "title": "ENREACH-PDAC-01 KN046 PDAC Phase 3",
+     "url": "https://clinicaltrials.gov/study/NCT05149326",
+     "passage": "ENREACH-PDAC-01 (NCT05149326, Alphamab KN046-303): randomized double-blind Phase 3, ~408 patients, KN046 (PD-L1xCTLA4 bispecific) + gemcitabine/nab-paclitaxel vs placebo + chemotherapy, 1L advanced PDAC. Primary endpoint overall survival; secondary PFS and ORR. Status UNKNOWN at last registry update (2024-03).",
+     "expected_for_this_query": false,
+     "human_relevant": "PENDING (mark true/false by hand)"
+    }
+   ],
+   "human_metrics": "PENDING (compute Recall@k/MRR only after manual judgments)"
+  },
+  {
+   "query": "bispecific antibody NSCLC trial discontinued futility",
+   "expected_sources": [
+    "AZ-PR-evolve-lung02-2026",
+    "Merck-INTRPID-037-2021"
+   ],
+   "expected_not_ingested": [
+    "Merck-INTRPID-037-2021"
+   ],
+   "hits": [
+    {
+     "source_id": "doi:10.1007/s00432-024-05740-3",
+     "score": 0.5337,
+     "title": "BiSpec Pairwise AI (Zhang et al. 2024)",
+     "url": "https://doi.org/10.1007/s00432-024-05740-3",
+     "passage": "BiSpec Pairwise AI (Zhang et al., J Cancer Res Clin Oncol 2024, DOI 10.1007/s00432-024-05740-3): machine-learning framework guiding bispecific antibody target-pair selection. XGBoost pairwise learning over biological features (target activity, safety, cell-type specificity, pathway mechanism, gene embeddings) predicts druggability of target combinations; RAG with GPT supplements predictions with feature rationales. Approved bispecific examples: glofitamab CD20xCD3, AK104 PD-1xCTLA4 (cadonilimab), AK112 PD-1xVEGF (ivonescimab), amivantamab EGFRxMET approved 2021 for NSCLC.",
+     "expected_for_this_query": false,
+     "human_relevant": "PENDING (mark true/false by hand)"
+    },
+    {
+     "source_id": "NCT05984277",
+     "score": 0.499,
+     "title": "eVOLVE-Lung02 volrustomig NSCLC (discontinued 2026-08 futility)",
+     "url": "https://clinicaltrials.gov/study/NCT05984277",
+     "passage": "eVOLVE-Lung02 (NCT05984277, AstraZeneca D798AC00001): Phase 3, 895 patients, volrustomig (MEDI5752, PD-1xCTLA4 bispecific) + chemotherapy vs pembrolizumab + chemotherapy, 1L metastatic NSCLC PD-L1 <50%. Dual primary endpoints PFS and OS in PD-L1-negative participants. Status ACTIVE_NOT_RECRUITING at registry fetch; sponsor discontinued 2026-08-17 for futility (IDMC: PFS/OS unlikely met). Drug overall still investigational in other indications.",
+     "expected_for_this_query": false,
+     "human_relevant": "PENDING (mark true/false by hand)"
+    },
+    {
+     "source_id": "NCT05149326",
+     "score": 0.4634,
+     "title": "ENREACH-PDAC-01 KN046 PDAC Phase 3",
+     "url": "https://clinicaltrials.gov/study/NCT05149326",
+     "passage": "ENREACH-PDAC-01 (NCT05149326, Alphamab KN046-303): randomized double-blind Phase 3, ~408 patients, KN046 (PD-L1xCTLA4 bispecific) + gemcitabine/nab-paclitaxel vs placebo + chemotherapy, 1L advanced PDAC. Primary endpoint overall survival; secondary PFS and ORR. Status UNKNOWN at last registry update (2024-03).",
+     "expected_for_this_query": false,
+     "human_relevant": "PENDING (mark true/false by hand)"
+    },
+    {
+     "source_id": "NCI-zenocutuzumab-2025",
+     "score": 0.4537,
+     "title": "NCI: Zenocutuzumab for NRG1+ NSCLC/PDAC (accelerated approval)",
+     "url": "https://www.cancer.gov/news-events/cancer-currents-blog/2025/fda-zenocutuzumab-lung-and-pancreatic-cancers-nrg1-alteration",
+     "passage": "NCI Cancer Currents Blog, 26 Mar 2025: FDA accelerated approval of zenocutuzumab (Bizengri) for NRG1-fusion NSCLC and pancreatic cancer. Zenocutuzumab blocks HER3-NRG1, disrupting HER2/HER3 signaling. Phase 2: 158 patients (93 NSCLC, 36 pancreatic); ~30% NSCLC response (median 12.7 mo), 42% pancreatic (median 7.4 mo). Mild toxicities (diarrhea, fatigue, nausea, anemia). Confirmatory studies required under accelerated approval.",
+     "expected_for_this_query": false,
+     "human_relevant": "PENDING (mark true/false by hand)"
+    },
+    {
+     "source_id": "AZ-PR-evolve-lung02-2026",
+     "score": 0.3612,
+     "title": "AstraZeneca: eVOLVE-Lung02 discontinuation (IDMC futility)",
+     "url": "https://www.astrazeneca.com/media-centre/press-releases/2026/update-on-evolve-lung02-phase-iii-trial.html",
+     "passage": "AstraZeneca press release 2026-08-17: eVOLVE-Lung02 Phase 3 discontinued on Independent Data Monitoring Committee recommendation; volrustomig + chemotherapy unlikely to meet dual primary endpoints PFS or OS in PD-L1-negative metastatic NSCLC vs pembrolizumab + chemotherapy. Safety consistent with known profiles, no new signals. Other volrustomig Phase 3 programs continue (cervical, HNSCC, mesothelioma). Trial: 895 patients, 25 countries, 1:1 randomization.",
+     "expected_for_this_query": true,
+     "human_relevant": "PENDING (mark true/false by hand)"
+    }
+   ],
+   "human_metrics": "PENDING (compute Recall@k/MRR only after manual judgments)"
+  },
+  {
+   "query": "KN046 pancreatic cancer phase 3",
+   "expected_sources": [
+    "NCT05149326"
+   ],
+   "expected_not_ingested": [],
+   "hits": [
+    {
+     "source_id": "NCT05149326",
+     "score": 0.5513,
+     "title": "ENREACH-PDAC-01 KN046 PDAC Phase 3",
+     "url": "https://clinicaltrials.gov/study/NCT05149326",
+     "passage": "ENREACH-PDAC-01 (NCT05149326, Alphamab KN046-303): randomized double-blind Phase 3, ~408 patients, KN046 (PD-L1xCTLA4 bispecific) + gemcitabine/nab-paclitaxel vs placebo + chemotherapy, 1L advanced PDAC. Primary endpoint overall survival; secondary PFS and ORR. Status UNKNOWN at last registry update (2024-03).",
+     "expected_for_this_query": true,
+     "human_relevant": "PENDING (mark true/false by hand)"
+    },
+    {
+     "source_id": "NCT05984277",
+     "score": 0.4623,
+     "title": "eVOLVE-Lung02 volrustomig NSCLC (discontinued 2026-08 futility)",
+     "url": "https://clinicaltrials.gov/study/NCT05984277",
+     "passage": "eVOLVE-Lung02 (NCT05984277, AstraZeneca D798AC00001): Phase 3, 895 patients, volrustomig (MEDI5752, PD-1xCTLA4 bispecific) + chemotherapy vs pembrolizumab + chemotherapy, 1L metastatic NSCLC PD-L1 <50%. Dual primary endpoints PFS and OS in PD-L1-negative participants. Status ACTIVE_NOT_RECRUITING at registry fetch; sponsor discontinued 2026-08-17 for futility (IDMC: PFS/OS unlikely met). Drug overall still investigational in other indications.",
+     "expected_for_this_query": false,
+     "human_relevant": "PENDING (mark true/false by hand)"
+    },
+    {
+     "source_id": "doi:10.1007/s00432-024-05740-3",
+     "score": 0.4534,
+     "title": "BiSpec Pairwise AI (Zhang et al. 2024)",
+     "url": "https://doi.org/10.1007/s00432-024-05740-3",
+     "passage": "BiSpec Pairwise AI (Zhang et al., J Cancer Res Clin Oncol 2024, DOI 10.1007/s00432-024-05740-3): machine-learning framework guiding bispecific antibody target-pair selection. XGBoost pairwise learning over biological features (target activity, safety, cell-type specificity, pathway mechanism, gene embeddings) predicts druggability of target combinations; RAG with GPT supplements predictions with feature rationales. Approved bispecific examples: glofitamab CD20xCD3, AK104 PD-1xCTLA4 (cadonilimab), AK112 PD-1xVEGF (ivonescimab), amivantamab EGFRxMET approved 2021 for NSCLC.",
+     "expected_for_this_query": false,
+     "human_relevant": "PENDING (mark true/false by hand)"
+    },
+    {
+     "source_id": "NCI-zenocutuzumab-2025",
+     "score": 0.441,
+     "title": "NCI: Zenocutuzumab for NRG1+ NSCLC/PDAC (accelerated approval)",
+     "url": "https://www.cancer.gov/news-events/cancer-currents-blog/2025/fda-zenocutuzumab-lung-and-pancreatic-cancers-nrg1-alteration",
+     "passage": "NCI Cancer Currents Blog, 26 Mar 2025: FDA accelerated approval of zenocutuzumab (Bizengri) for NRG1-fusion NSCLC and pancreatic cancer. Zenocutuzumab blocks HER3-NRG1, disrupting HER2/HER3 signaling. Phase 2: 158 patients (93 NSCLC, 36 pancreatic); ~30% NSCLC response (median 12.7 mo), 42% pancreatic (median 7.4 mo). Mild toxicities (diarrhea, fatigue, nausea, anemia). Confirmatory studies required under accelerated approval.",
+     "expected_for_this_query": false,
+     "human_relevant": "PENDING (mark true/false by hand)"
+    },
+    {
+     "source_id": "AZ-PR-evolve-lung02-2026",
+     "score": 0.3373,
+     "title": "AstraZeneca: eVOLVE-Lung02 discontinuation (IDMC futility)",
+     "url": "https://www.astrazeneca.com/media-centre/press-releases/2026/update-on-evolve-lung02-phase-iii-trial.html",
+     "passage": "AstraZeneca press release 2026-08-17: eVOLVE-Lung02 Phase 3 discontinued on Independent Data Monitoring Committee recommendation; volrustomig + chemotherapy unlikely to meet dual primary endpoints PFS or OS in PD-L1-negative metastatic NSCLC vs pembrolizumab + chemotherapy. Safety consistent with known profiles, no new signals. Other volrustomig Phase 3 programs continue (cervical, HNSCC, mesothelioma). Trial: 895 patients, 25 countries, 1:1 randomization.",
+     "expected_for_this_query": false,
+     "human_relevant": "PENDING (mark true/false by hand)"
+    }
+   ],
+   "human_metrics": "PENDING (compute Recall@k/MRR only after manual judgments)"
+  }
+ ]
+}

@@ -1,1 +1,71 @@
-{"ingest_via": "POST /ingest {documents:[{text,title,source,url,source_id,metadata}]}", "re_embed_rule": "Model/revision/dim change -> clear store + re-ingest (409 enforced by /ingest).", "sources": [{"source_id": "doi:10.1007/s00432-024-05740-3", "source_type": "paper", "status": "not-ingested", "title": "BiSpec Pairwise AI (Zhang et al. 2024)", "url": "https://doi.org/10.1007/s00432-024-05740-3"}, {"source_id": "FDA-spotlight-bsAb", "source_type": "regulatory", "status": "not-ingested", "title": "FDA Bispecific Antibodies spotlight (approved list to 2023)", "url": "https://www.fda.gov/drugs/spotlight-cder-science/bispecific-antibodies-area-research-and-clinical-applications"}, {"source_id": "NCI-zenocutuzumab-2025", "source_type": "regulatory-news", "status": "not-ingested", "title": "NCI: Zenocutuzumab for NRG1+ NSCLC/PDAC (accelerated approval)", "url": "https://www.cancer.gov/news-events/cancer-currents-blog/2025/fda-zenocutuzumab-lung-and-pancreatic-cancers-nrg1-alteration"}, {"source_id": "NCT05984277", "source_type": "trial-registry", "status": "not-ingested", "title": "eVOLVE-Lung02 volrustomig NSCLC (discontinued 2026-08 futility)", "url": "https://clinicaltrials.gov/study/NCT05984277"}, {"source_id": "NCT06129864", "source_type": "trial-registry", "status": "not-ingested", "title": "eVOLVE-HNSCC volrustomig LA-HNSCC Phase 3", "url": "https://clinicaltrials.ucsf.edu/trial/NCT06129864"}, {"source_id": "NCT05149326", "source_type": "trial-registry", "status": "not-ingested", "title": "ENREACH-PDAC-01 KN046 PDAC Phase 3", "url": "https://clinicaltrials.gov/study/NCT05149326"}, {"source_id": "PMID:39920148", "source_type": "paper", "status": "not-ingested", "title": "KN046 + lenvatinib HCC Phase 2 (Nat Commun 2025)", "url": "https://pubmed.ncbi.nlm.nih.gov/39920148"}, {"source_id": "AZ-PR-evolve-lung02-2026", "source_type": "sponsor-statement", "status": "not-ingested", "title": "AstraZeneca: eVOLVE-Lung02 discontinuation (IDMC futility)", "url": "https://www.astrazeneca.com/media-centre/press-releases/2026/update-on-evolve-lung02-phase-iii-trial.html"}, {"source_id": "Merck-INTRPID-037-2021", "source_type": "sponsor-statement", "status": "not-ingested", "title": "Merck KGaA: INTR@PID Lung 037 bintrafusp alfa discontinuation", "url": "https://www.merckgroup.com/en/news/bintrafusp-alfa-037-update-20-01-2021.html"}], "status": "manifest-only; vector store EMPTY as of 2026-10-11", "version": "rag-corpus-manifest/1.0"}
+{
+ "ingest_via": "POST /ingest {documents:[{text,title,source,url,source_id,metadata}]}",
+ "re_embed_rule": "Model/revision/dim change -> clear store + re-ingest (409 enforced by /ingest).",
+ "sources": [
+  {
+   "source_id": "doi:10.1007/s00432-024-05740-3",
+   "source_type": "paper",
+   "status": "ingested 2026-10-17 (PubMedBERT fingerprint 2b4d832b80c991fa)",
+   "title": "BiSpec Pairwise AI (Zhang et al. 2024)",
+   "url": "https://doi.org/10.1007/s00432-024-05740-3"
+  },
+  {
+   "source_id": "FDA-spotlight-bsAb",
+   "source_type": "regulatory",
+   "status": "not-ingested: fetch-failed 2026-10-17 (HTTP 404 at listed URL)",
+   "title": "FDA Bispecific Antibodies spotlight (approved list to 2023)",
+   "url": "https://www.fda.gov/drugs/spotlight-cder-science/bispecific-antibodies-area-research-and-clinical-applications"
+  },
+  {
+   "source_id": "NCI-zenocutuzumab-2025",
+   "source_type": "regulatory-news",
+   "status": "ingested 2026-10-17 (PubMedBERT fingerprint 2b4d832b80c991fa)",
+   "title": "NCI: Zenocutuzumab for NRG1+ NSCLC/PDAC (accelerated approval)",
+   "url": "https://www.cancer.gov/news-events/cancer-currents-blog/2025/fda-zenocutuzumab-lung-and-pancreatic-cancers-nrg1-alteration"
+  },
+  {
+   "source_id": "NCT05984277",
+   "source_type": "trial-registry",
+   "status": "ingested 2026-10-17 (PubMedBERT fingerprint 2b4d832b80c991fa)",
+   "title": "eVOLVE-Lung02 volrustomig NSCLC (discontinued 2026-08 futility)",
+   "url": "https://clinicaltrials.gov/study/NCT05984277"
+  },
+  {
+   "source_id": "NCT06129864",
+   "source_type": "trial-registry",
+   "status": "ingested 2026-10-17 (PubMedBERT fingerprint 2b4d832b80c991fa)",
+   "title": "eVOLVE-HNSCC volrustomig LA-HNSCC Phase 3",
+   "url": "https://clinicaltrials.ucsf.edu/trial/NCT06129864"
+  },
+  {
+   "source_id": "NCT05149326",
+   "source_type": "trial-registry",
+   "status": "ingested 2026-10-17 (PubMedBERT fingerprint 2b4d832b80c991fa)",
+   "title": "ENREACH-PDAC-01 KN046 PDAC Phase 3",
+   "url": "https://clinicaltrials.gov/study/NCT05149326"
+  },
+  {
+   "source_id": "PMID:39920148",
+   "source_type": "paper",
+   "status": "not-ingested: fetch-blocked 2026-10-17 (cookie wall); evidence preserved in clinical CSV, not in RAG corpus",
+   "title": "KN046 + lenvatinib HCC Phase 2 (Nat Commun 2025)",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/39920148"
+  },
+  {
+   "source_id": "AZ-PR-evolve-lung02-2026",
+   "source_type": "sponsor-statement",
+   "status": "ingested 2026-10-17 (PubMedBERT fingerprint 2b4d832b80c991fa)",
+   "title": "AstraZeneca: eVOLVE-Lung02 discontinuation (IDMC futility)",
+   "url": "https://www.astrazeneca.com/media-centre/press-releases/2026/update-on-evolve-lung02-phase-iii-trial.html"
+  },
+  {
+   "source_id": "Merck-INTRPID-037-2021",
+   "source_type": "sponsor-statement",
+   "status": "not-ingested: fetch-failed 2026-10-17 (HTTP 403)",
+   "title": "Merck KGaA: INTR@PID Lung 037 bintrafusp alfa discontinuation",
+   "url": "https://www.merckgroup.com/en/news/bintrafusp-alfa-037-update-20-01-2021.html"
+  }
+ ],
+ "status": "manifest-only; vector store EMPTY as of 2026-10-11",
+ "version": "rag-corpus-manifest/1.0"
+}
