@@ -20,7 +20,7 @@ import json
 import os
 import sys
 
-GENERATOR_VERSION = "build_feature_store/1.0"
+GENERATOR_VERSION = "build_feature_store/1.1 (P-A margins + P-B flags; selection unchanged)"
 
 
 def log(msg: str) -> None:
@@ -38,6 +38,9 @@ def main() -> int:
     ap.add_argument("--normal-obs", default=None,
                     help="obs column + value marking normal cells, e.g. origin:nLung")
     ap.add_argument("--celltype-obs", default="sample")
+    ap.add_argument("--alt-celltype-obs", default=None,
+                    help="optional second obs column for P-B labeling-stability "
+                         "diagnostics (flag only; never changes selection)")
     ap.add_argument("--threshold", type=float, default=0.0)
     ap.add_argument("--out", required=True)
     args = ap.parse_args()
@@ -48,6 +51,8 @@ def main() -> int:
 
     from feature_engineering.biological_features.gene_embedding import load_gene2vec_txt
     from feature_engineering.biological_features.target_activity import (
+        compare_selections,
+        rank_margins,
         top_expressing_populations,
     )
     from feature_engineering.feature_builder import build_features
@@ -113,6 +118,23 @@ def main() -> int:
         e1, e2 = col_vec(g1), col_vec(g2)
         pops = sorted(set(top_expressing_populations(e1, labels, 2)) |
                       set(top_expressing_populations(e2, labels, 2)))
+        # P-A: rank margins from the same means (diagnostic; selection above unchanged)
+        margins = {"target1": rank_margins(e1, labels),
+                   "target2": rank_margins(e2, labels)}
+        # P-B: stability flag vs an alternative labeling when available
+        alt_col = args.alt_celltype_obs
+        if alt_col and alt_col in adata.obs:
+            alt_labels = np.asarray(adata.obs[alt_col].astype(str))
+            a1 = sorted(set(top_expressing_populations(e1, alt_labels, 2)))
+            a2 = sorted(set(top_expressing_populations(e2, alt_labels, 2)))
+            stability = {"target1": compare_selections(labels, alt_labels,
+                                                       top_expressing_populations(e1, labels, 2), a1),
+                         "target2": compare_selections(labels, alt_labels,
+                                                       top_expressing_populations(e2, labels, 2), a2),
+                         "alt_column": alt_col}
+        else:
+            stability = {"status": "unavailable (no alternative labeling)",
+                         "differ": None}
         mask = np.array([l in pops for l in labels])
         se1, se2 = e1[mask], e2[mask]
         tm1 = tm2 = nm1 = nm2 = float("nan")
@@ -133,13 +155,15 @@ def main() -> int:
                      "features": feats,
                      "missing_features": missing,
                      "feature_status": "complete" if not missing else "incomplete",
-                     "provenance": {
-                         "dataset": args.dataset_id,
-                         "matrix": args.h5ad,
-                         "generator": GENERATOR_VERSION,
-                         "populations": pops,
-                         "population_column": obs_col,
-                         "cells_used": int(mask.sum()),
+                      "provenance": {
+                          "dataset": args.dataset_id,
+                          "matrix": args.h5ad,
+                          "generator": GENERATOR_VERSION,
+                          "populations": pops,
+                          "population_column": obs_col,
+                          "rank_margins": margins,
+                          "label_stability": stability,
+                          "cells_used": int(mask.sum()),
                          "threshold": args.threshold,
                          "normal_split": normal_flag,
                          "embeddings": args.embeddings,
